@@ -1,0 +1,59 @@
+CREATE DATABASE sanaquesana;
+
+USE sanaquesana;
+
+CREATE TABLE persona(
+    per_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    per_nombre varchar(100) NOT NULL,
+    per_direccion varchar(50),
+    per_telefono varchar(20),
+    per_postal varchar(40),
+    per_cedula varchar(15),
+    per_seguridad varchar(20)
+);
+
+CREATE TABLE descanso(
+    des_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    des_inicio date NOT NULL,
+    des_final date NOT NULL
+);
+
+CREATE TABLE empleado(
+    emp_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    emp_ciudad varchar(40),
+    emp_depto varchar(30),
+    des_id int NOT NULL,
+    FOREIGN KEY (emp_id) REFERENCES persona(per_id),
+    FOREIGN KEY (des_id) REFERENCES descanso(des_id)
+);
+
+CREATE TABLE horario(
+    hor_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    hor_semana date NOT NULL,
+    hor_inicio time NOT NULL,
+    hor_fin time NOT NULL
+);
+
+CREATE TABLE medico(
+    med_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    med_matricula varchar(50) NOT NULL,
+    med_tipo varchar(50) NOT NULL,
+    hor_id int NOT NULL,
+    FOREIGN KEY (med_id) REFERENCES empleado(emp_id),
+    FOREIGN KEY (hor_id) REFERENCES horario(hor_id)
+);
+
+CREATE TABLE sustitucion(
+    sus_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    sus_baja date NOT NULL,
+    sus_alta date NOT NULL,
+    med_id int NOT NULL,
+    FOREIGN KEY (med_id) REFERENCES medico(med_id)
+);
+
+CREATE TABLE paciente(
+    pac_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    med_id int NOT NULL,
+    FOREIGN KEY (pac_id) REFERENCES persona(per_id),
+    FOREIGN KEY (med_id) REFERENCES medico(med_id)
+);
