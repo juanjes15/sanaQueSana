@@ -2,7 +2,7 @@
 
 $rutaCarpeta = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 $rutaProyecto = explode("/", $rutaCarpeta);
-require_once $_SERVER['DOCUMENT_ROOT'] . "/" . $rutaProyecto[1] . '/model/descanso.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/" . $rutaProyecto[1] . '/models/descanso.php';
 
 class descansoController
 {
@@ -17,16 +17,15 @@ class descansoController
     {
         $descansos = $this->model->getDescansos();
         global $rutaProyecto;
-        include $_SERVER['DOCUMENT_ROOT'] . "/" . $rutaProyecto[1] . '/view/descanso/desList.php';
+        include $_SERVER['DOCUMENT_ROOT'] . "/" . $rutaProyecto[1] . '/views/descanso/desList.php';
     }
 
     public function createDescanso()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $temp = new Descanso();
-            $temp->setInicio($_POST['inicio']);
-            $temp->setFinal($_POST['final']);
-            $success = $this->model->createDescanso($temp);
+            $inicio = $_POST['inicio'];
+            $final = $_POST['final'];
+            $success = $this->model->createDescanso($inicio, $final);
             if ($success) {
                 echo '<script>alert("Descanso creado exitosamente.");</script>';
             } else {
@@ -35,18 +34,16 @@ class descansoController
             echo '<script>setTimeout(function() { window.location.href = "desIndex.php"; }, 13);</script>';
         } else {
             global $rutaProyecto;
-            include $_SERVER['DOCUMENT_ROOT'] . "/" . $rutaProyecto[1] . '/view/descanso/desCreate.php';
+            include $_SERVER['DOCUMENT_ROOT'] . "/" . $rutaProyecto[1] . '/views/descanso/desCreate.php';
         }
     }
 
     public function updateDescanso($id)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $temp = new Descanso();
-            $temp->setId($id);
-            $temp->setInicio($_POST['inicio']);
-            $temp->setFinal($_POST['final']);
-            $success = $this->model->updateDescanso($temp);
+            $inicio = $_POST['inicio'];
+            $final = $_POST['final'];
+            $success = $this->model->updateDescanso($id, $inicio, $final);
             if ($success) {
                 echo '<script>alert("Descanso actualizado exitosamente.");</script>';
             } else {
@@ -56,7 +53,7 @@ class descansoController
         } else {
             $des = $this->model->getDescanso($id);
             global $rutaProyecto;
-            include $_SERVER['DOCUMENT_ROOT'] . "/" . $rutaProyecto[1] . '/view/descanso/desUpdate.php';
+            include $_SERVER['DOCUMENT_ROOT'] . "/" . $rutaProyecto[1] . '/views/descanso/desUpdate.php';
         }
     }
 

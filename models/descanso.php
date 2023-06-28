@@ -2,74 +2,33 @@
 class Descanso
 {
     private $db_connection;
-    private $id;
-    private $inicio;
-    private $final;
 
-    public function __construct($id = null, $inicio = null, $final = null)
+    public function __construct()
     {
         $rutaCarpeta = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
         $rutaProyecto = explode("/", $rutaCarpeta);
         include $_SERVER['DOCUMENT_ROOT'] . "/" . $rutaProyecto[1] . '/core/database.php';
         $database = new Database();
         $this->db_connection = $database->getConnection();
-
-        $this->id = $id;
-        $this->inicio = $inicio;
-        $this->final = $final;
     }
 
-    public function setId($value)
+    public function createDescanso($inicio, $final)
     {
-        $this->id = $value;
-    }
-    public function getId()
-    {
-        return $this->id;
-    }
-    public function setInicio($value)
-    {
-        $this->inicio = $value;
-    }
-    public function getInicio()
-    {
-        return $this->inicio;
-    }
-    public function setFinal($value)
-    {
-        $this->final = $value;
-    }
-    public function getFinal()
-    {
-        return $this->final;
-    }
-
-    public function createDescanso(Descanso $descanso)
-    {
-        $inicio = $descanso->getInicio();
-        $final = $descanso->getFinal();
-
         $query = "INSERT INTO descanso (des_inicio, des_final) VALUES (?, ?)";
         $stmt = $this->db_connection->prepare($query);
         $stmt->bindParam(1, $inicio);
         $stmt->bindParam(2, $final);
-        $insertado = $stmt->execute();
-        return $insertado;
+        return $stmt->execute();
     }
 
-    public function updateDescanso(Descanso $descanso)
+    public function updateDescanso($id, $inicio, $final)
     {
-        $id = $descanso->getId();
-        $inicio = $descanso->getInicio();
-        $final = $descanso->getFinal();
-
         $query = "UPDATE descanso SET des_inicio = ?, des_final = ? WHERE des_id = ?";
         $stmt = $this->db_connection->prepare($query);
         $stmt->bindParam(1, $inicio);
         $stmt->bindParam(2, $final);
         $stmt->bindParam(3, $id);
-        $actualizado = $stmt->execute();
-        return $actualizado;
+        return $stmt->execute();
     }
 
     public function deleteDescanso($id)
@@ -106,11 +65,6 @@ class Descanso
         $stmt->execute();
         $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($resultado) {
-            $descanso = new Descanso($resultado['des_id'], $resultado['des_inicio'], $resultado['des_final']);
-            return $descanso;
-        } else {
-            return null;
-        }
+        return $resultado;
     }
 }
