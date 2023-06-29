@@ -61,6 +61,7 @@
                 <table class="table table-warning">
                     <thead class="table-danger">
                         <tr class="text-start">
+                            <th scope="col">Empleado</th>
                             <th scope="col">Inicio</th>
                             <th scope="col">Final</th>
                         </tr>
@@ -69,6 +70,7 @@
                         <?php
                         foreach ($descansos as $des) { ?>
                             <tr>
+                                <td class="text-start"><?php echo $des['per_nombre']; ?></td>
                                 <td class="text-start"><?php echo $des['des_inicio']; ?></td>
                                 <td class="text-start"><?php echo $des['des_final']; ?></td>
                                 <td class="text-end">

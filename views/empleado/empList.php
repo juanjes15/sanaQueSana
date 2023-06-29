@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sana Que Sana</title>
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 
 <body style="background-color: #DBDFEA;">
@@ -22,8 +23,8 @@
                             Empleado...
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../empleado/empIndex.php">Empleado</a></li>
-                            <li><a class="dropdown-item" href="desIndex.php">Descanso</a></li>
+                            <li><a class="dropdown-item" href="empIndex.php">Empleado</a></li>
+                            <li><a class="dropdown-item" href="../descanso/desIndex.php">Descanso</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -46,47 +47,45 @@
     <div class="container text-center p-4" style="background-color: #FFEAD2;">
         <div class="row py-3">
             <div class="col">
-                <h1 class="h2">Crear Descanso</h1>
+                <h1 class="h1">Empleados</h1>
             </div>
         </div>
         <div class="row py-2">
-            <form method="POST" action="desIndex.php?action=createDescanso">
-                <div class="row justify-content-center py-2">
-                    <div class="col-1">
-                        <label for="inicio" class="col-form-label">Inicio:</label>
-                    </div>
-                    <div class="col-4">
-                        <input type="date" id="inicio" name="inicio" class="form-control">
-                    </div>
-                </div>
-                <div class="row justify-content-center py-2">
-                    <div class="col-1">
-                        <label for="final" class="col-form-label">Final:</label>
-                    </div>
-                    <div class="col-4">
-                        <input type="date" id="final" name="final" class="form-control">
-                    </div>
-                </div>
-                <div class="row justify-content-center py-2">
-                    <div class="col-1">
-                        <label for="empleado" class="col-form-label">Empleado:</label>
-                    </div>
-                    <div class="col-4">
-                        <select class="form-select" id="empleado" name="empleado">
-                            <option selected>Seleccione un empleado:</option>
-                            <?php
-                            foreach ($empleados as $emp) { ?>
-                                <option value="<?php echo $emp['per_id']; ?>"><?php echo $emp['per_nombre']; ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                </div>
-                <div class="row justify-content-center py-2">
-                    <div class="col-2">
-                        <button type="submit" class="btn btn-success">Crear</button>
-                    </div>
-                </div>
-            </form>
+            <div class="col-4">
+                <a href="empIndex.php?action=createEmpleado" class="btn btn-success">Nuevo empleado</a>
+            </div>
+        </div>
+
+        <div class="row justify-content-center py-3">
+            <div class="col-10">
+                <table class="table table-warning">
+                    <thead class="table-danger">
+                        <tr class="text-start">
+                            <th scope="col">Cédula</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Departamento</th>
+                            <th scope="col">Ciudad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($empleados as $emp) { ?>
+                            <tr>
+                                <td class="text-start"><?php echo $emp['per_cedula']; ?></td>
+                                <td class="text-start"><?php echo $emp['per_nombre']; ?></td>
+                                <td class="text-start"><?php echo $emp['emp_depto']; ?></td>
+                                <td class="text-start"><?php echo $emp['emp_ciudad']; ?></td>
+                                <td class="text-end">
+                                    <div class="d-flex justify-content-end">
+                                        <a title="Editar" href="empIndex.php?id=<?php echo $emp['per_id']; ?>&action=updateEmpleado" class="btn btn-warning me-2"><i class="bi bi-pencil-square"></i></a>
+                                        <a title="Eliminar" href="empIndex.php?id=<?php echo $emp['per_id']; ?>&action=deleteEmpleado" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar a <?php echo $emp['per_nombre']; ?>?')"><i class="bi bi-trash3"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <script src="../../js/bootstrap.bundle.min.js"></script>

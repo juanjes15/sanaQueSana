@@ -25,7 +25,8 @@ class descansoController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $inicio = $_POST['inicio'];
             $final = $_POST['final'];
-            $success = $this->model->createDescanso($inicio, $final);
+            $empleado = $_POST['empleado'];
+            $success = $this->model->createDescanso($inicio, $final, $empleado);
             if ($success) {
                 echo '<script>alert("Descanso creado exitosamente.");</script>';
             } else {
@@ -33,6 +34,7 @@ class descansoController
             }
             echo '<script>setTimeout(function() { window.location.href = "desIndex.php"; }, 13);</script>';
         } else {
+            $empleados = $this->model->getEmpleados();
             global $rutaProyecto;
             include $_SERVER['DOCUMENT_ROOT'] . "/" . $rutaProyecto[1] . '/views/descanso/desCreate.php';
         }
@@ -43,7 +45,8 @@ class descansoController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $inicio = $_POST['inicio'];
             $final = $_POST['final'];
-            $success = $this->model->updateDescanso($id, $inicio, $final);
+            $empleado = $_POST['empleado'];
+            $success = $this->model->updateDescanso($id, $inicio, $final, $empleado);
             if ($success) {
                 echo '<script>alert("Descanso actualizado exitosamente.");</script>';
             } else {
@@ -52,6 +55,7 @@ class descansoController
             echo '<script>setTimeout(function() { window.location.href = "desIndex.php"; }, 13);</script>';
         } else {
             $des = $this->model->getDescanso($id);
+            $empleados = $this->model->getEmpleados();
             global $rutaProyecto;
             include $_SERVER['DOCUMENT_ROOT'] . "/" . $rutaProyecto[1] . '/views/descanso/desUpdate.php';
         }

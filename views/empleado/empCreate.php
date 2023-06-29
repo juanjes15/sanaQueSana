@@ -22,8 +22,8 @@
                             Empleado...
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../empleado/empIndex.php">Empleado</a></li>
-                            <li><a class="dropdown-item" href="desIndex.php">Descanso</a></li>
+                            <li><a class="dropdown-item" href="empIndex.php">Empleado</a></li>
+                            <li><a class="dropdown-item" href="../descanso/desIndex.php">Descanso</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -46,39 +46,73 @@
     <div class="container text-center p-4" style="background-color: #FFEAD2;">
         <div class="row py-3">
             <div class="col">
-                <h1 class="h2">Crear Descanso</h1>
+                <h1 class="h2">Crear Empleado</h1>
             </div>
         </div>
         <div class="row py-2">
-            <form method="POST" action="desIndex.php?action=createDescanso">
+            <form method="POST" action="empIndex.php?action=createEmpleado">
                 <div class="row justify-content-center py-2">
                     <div class="col-1">
-                        <label for="inicio" class="col-form-label">Inicio:</label>
+                        <label for="per_cedula" class="col-form-label">Cédula:</label>
                     </div>
                     <div class="col-4">
-                        <input type="date" id="inicio" name="inicio" class="form-control">
+                        <input type="text" id="per_cedula" name="per_cedula" class="form-control">
                     </div>
                 </div>
                 <div class="row justify-content-center py-2">
                     <div class="col-1">
-                        <label for="final" class="col-form-label">Final:</label>
+                        <label for="per_nombre" class="col-form-label">Nombre:</label>
                     </div>
                     <div class="col-4">
-                        <input type="date" id="final" name="final" class="form-control">
+                        <input type="text" id="per_nombre" name="per_nombre" class="form-control">
                     </div>
                 </div>
                 <div class="row justify-content-center py-2">
                     <div class="col-1">
-                        <label for="empleado" class="col-form-label">Empleado:</label>
+                        <label for="per_direccion" class="col-form-label">Dirección:</label>
                     </div>
                     <div class="col-4">
-                        <select class="form-select" id="empleado" name="empleado">
-                            <option selected>Seleccione un empleado:</option>
-                            <?php
-                            foreach ($empleados as $emp) { ?>
-                                <option value="<?php echo $emp['per_id']; ?>"><?php echo $emp['per_nombre']; ?></option>
-                            <?php } ?>
-                        </select>
+                        <input type="text" id="per_direccion" name="per_direccion" class="form-control">
+                    </div>
+                </div>
+                <div class="row justify-content-center py-2">
+                    <div class="col-1">
+                        <label for="per_telefono" class="col-form-label">Teléfono:</label>
+                    </div>
+                    <div class="col-4">
+                        <input type="text" id="per_telefono" name="per_telefono" class="form-control">
+                    </div>
+                </div>
+                <div class="row justify-content-center py-2">
+                    <div class="col-1">
+                        <label for="per_postal" class="col-form-label">Código Postal:</label>
+                    </div>
+                    <div class="col-4">
+                        <input type="text" id="per_postal" name="per_postal" class="form-control">
+                    </div>
+                </div>
+                <div class="row justify-content-center py-2">
+                    <div class="col-1">
+                        <label for="per_seguridad" class="col-form-label">Número de la Seguridad Social:</label>
+                    </div>
+                    <div class="col-4">
+                        <input type="text" id="per_seguridad" name="per_seguridad" class="form-control">
+                    </div>
+                </div>
+                <div class="row justify-content-center py-2">
+                    <div class="col-1">
+                        <label for="emp_ciudad" class="col-form-label">Ciudad:</label>
+                    </div>
+                    <div class="col-4">
+                        <input type="text" id="emp_ciudad" name="emp_ciudad" class="form-control">
+                    </div>
+                </div>
+                <div class="row justify-content-center py-2">
+                    <div class="col-1">
+                        <label for="emp_depto" class="col-form-label">Departamento:</label>
+                    </div>
+                    <div class="col-4">
+                        <input type="text" id="emp_depto" name="emp_depto" class="form-control">
                     </div>
                 </div>
                 <div class="row justify-content-center py-2">

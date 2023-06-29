@@ -12,19 +12,19 @@ CREATE TABLE persona(
     per_seguridad varchar(20)
 );
 
+CREATE TABLE empleado(
+    emp_id int NOT NULL PRIMARY KEY,
+    emp_ciudad varchar(40),
+    emp_depto varchar(30),
+    FOREIGN KEY (emp_id) REFERENCES persona(per_id)
+);
+
 CREATE TABLE descanso(
     des_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
     des_inicio date NOT NULL,
-    des_final date NOT NULL
-);
-
-CREATE TABLE empleado(
-    emp_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    emp_ciudad varchar(40),
-    emp_depto varchar(30),
-    des_id int NOT NULL,
-    FOREIGN KEY (emp_id) REFERENCES persona(per_id),
-    FOREIGN KEY (des_id) REFERENCES descanso(des_id)
+    des_final date NOT NULL,
+    emp_id int NOT NULL,
+    FOREIGN KEY (emp_id) REFERENCES empleado(emp_id)
 );
 
 CREATE TABLE horario(
@@ -35,7 +35,7 @@ CREATE TABLE horario(
 );
 
 CREATE TABLE medico(
-    med_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    med_id int NOT NULL PRIMARY KEY,
     med_matricula varchar(50) NOT NULL,
     med_tipo varchar(50) NOT NULL,
     hor_id int NOT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE sustitucion(
 );
 
 CREATE TABLE paciente(
-    pac_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    pac_id int NOT NULL PRIMARY KEY,
     med_id int NOT NULL,
     FOREIGN KEY (pac_id) REFERENCES persona(per_id),
     FOREIGN KEY (med_id) REFERENCES medico(med_id)
