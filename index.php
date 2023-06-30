@@ -45,8 +45,8 @@
     </nav>
     <div class="container text-center p-4" style="background-color: #FFEAD2;">
         <h1 class="h1">Centro de Salud<br>Sana Que Sana</h1>
-        <img src="#" class="img-fluid p-4 rounded-5" alt="...">
-        <h5 class="h5">bla bla bla bla</h5>
+        <img src="img/index.jpg" class="img-fluid p-4 rounded-5" alt="...">
+        <h5 class="h5 p-5">Bienvenido a Sana que Sana, tu clínica de confianza para el cuidado integral de tu salud. Nuestro equipo de expertos médicos está comprometido en brindarte atención personalizada y de calidad. En un ambiente acogedor y seguro, te ayudaremos a alcanzar una vida saludable y plena. ¡Contáctanos hoy mismo para comenzar tu camino hacia el bienestar!</h5>
     </div>
     <script src="js/bootstrap.bundle.min.js"></script>
 </body>
