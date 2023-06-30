@@ -53,6 +53,21 @@
             <form method="POST" action="desIndex.php?id=<?php echo $des['des_id'] ?>&action=updateDescanso">
                 <div class="row justify-content-center py-2">
                     <div class="col-1">
+                        <label for="empleado" class="col-form-label">Empleado:</label>
+                    </div>
+                    <div class="col-4">
+                        <select class="form-select" id="empleado" name="empleado">
+                            <?php
+                            foreach ($empleados as $empleado) { ?>  
+                                <option <?php if ($emp['per_id'] == $empleado['per_id']) {
+                                            echo 'selected';
+                                        } ?> value="<?php echo $empleado['per_id']; ?>"><?php echo $empleado['per_nombre']; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="row justify-content-center py-2">
+                    <div class="col-1">
                         <label for="inicio" class="col-form-label">Inicio:</label>
                     </div>
                     <div class="col-4">

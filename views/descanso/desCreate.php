@@ -53,6 +53,20 @@
             <form method="POST" action="desIndex.php?action=createDescanso">
                 <div class="row justify-content-center py-2">
                     <div class="col-1">
+                        <label for="empleado" class="col-form-label">Empleado:</label>
+                    </div>
+                    <div class="col-4">
+                        <select class="form-select" id="empleado" name="empleado">
+                            <option selected>Seleccione un empleado:</option>
+                            <?php
+                            foreach ($empleados as $emp) { ?>
+                                <option value="<?php echo $emp['per_id']; ?>"><?php echo $emp['per_nombre']; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="row justify-content-center py-2">
+                    <div class="col-1">
                         <label for="inicio" class="col-form-label">Inicio:</label>
                     </div>
                     <div class="col-4">
@@ -65,20 +79,6 @@
                     </div>
                     <div class="col-4">
                         <input type="date" id="final" name="final" class="form-control">
-                    </div>
-                </div>
-                <div class="row justify-content-center py-2">
-                    <div class="col-1">
-                        <label for="empleado" class="col-form-label">Empleado:</label>
-                    </div>
-                    <div class="col-4">
-                        <select class="form-select" id="empleado" name="empleado">
-                            <option selected>Seleccione un empleado:</option>
-                            <?php
-                            foreach ($empleados as $emp) { ?>
-                                <option value="<?php echo $emp['per_id']; ?>"><?php echo $emp['per_nombre']; ?></option>
-                            <?php } ?>
-                        </select>
                     </div>
                 </div>
                 <div class="row justify-content-center py-2">
